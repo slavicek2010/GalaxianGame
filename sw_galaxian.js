@@ -946,7 +946,7 @@ function animateInfiniteLoop() {
  */
 function addNewEnemies() {
 
-    if((game.playerScore%18) ===0){
+    if((game.playerScore%90)%10 ===0){
         game.spawnBoss();
     } else {
         game.spawnWave();
