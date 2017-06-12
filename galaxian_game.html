@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Star Wars - Galaxian</title>
+		<link rel="icon" href="imgs/millennium_falcon.png" type="image/png">
+		<style>
+			canvas {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				background: transparent;
+			}
+			#background {
+				z-index: -2;
+			}
+			#main {
+				z-index: -1;
+			}
+			#ship {
+				z-index: 0;
+			}
+			.score {
+				position: absolute;
+				top: 5px;
+				left: 480px;
+				color: #FFD700;
+				font-family: Rockwell, sans-serif;
+				cursor: default;
+			}
+			.game-over {
+				position: absolute;
+				top: 50px;
+				left: 50px;
+				color: #FFD700;
+				font-family: Rockwell, sans-serif;
+				font-size: 30px;
+				cursor: default;
+				display: none;
+			}
+			.game-over span {
+				font-size: 20px;
+				cursor: pointer;
+				position: relative;
+			}
+			.game-over span:hover {
+				color: crimson;
+			}
+			.start-game {
+				position: absolute;
+				top: 50px;
+				left: 50px;
+				color: #FFD700;
+				font-family: Rockwell, sans-serif;
+				font-size: 40px;
+				cursor: default;
+				display: none;
+			}
+			.start-game span {
+				font-size: 20px;
+				cursor: pointer;
+				position: relative;
+			}
+			.start-game span:hover {
+				color: crimson;
+			}
+			.ships {
+				position: absolute;
+				top: 50px;
+				left: 50px;
+				color: #FFD700;
+				font-family: Rockwell, sans-serif;
+				font-size: 30px;
+				cursor: default;
+				display: none;
+			}
+			.ships span {
+				font-size: 20px;
+				cursor: pointer;
+				position: relative;
+			}
+			.ships span:hover {
+				color: crimson;
+			}
+			.instructions {
+				position: absolute;
+				top: 50px;
+				left: 50px;
+				color: #FFD700;
+				font-family: Rockwell, sans-serif;
+				font-size: 30px;
+				cursor: default;
+				display: none;
+			}
+			.instructions span {
+				font-size: 20px;
+				cursor: pointer;
+				position: relative;
+			}
+			.instructions span:hover {
+				color: crimson;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- The canvas for the panning background -->
+		<canvas id="background" width="600" height="360">
+			Your browser does not support canvas. Please try again with a different browser.
+		</canvas>
+		<!-- The canvas for all enemy ships and bullets -->
+		<canvas id="main" width="600" height="360">
+		</canvas>
+		<!-- The canvas the ship uses (can only move up
+         one forth the screen. -->
+		<canvas id="ship" width="600" height="360">
+		</canvas>
+		<div class="score" id="score-game">SCORE: <span id="score"></span></div>
+		<div class="start-game" id="start-game">
+			<img src="imgs/logo.png" alt="Logo" height="80" width="200">
+			GALAXIAN
+			<table>
+				<tr align="left">
+					<th><span onclick="game.start()">START</span></th>
+				</tr>
+				<tr align="left">
+					<th><span onclick="game.shipMenu()">SELECT SPACESHIP</span></th>
+				</tr>
+				<tr align="left">
+					<th><span onclick="game.help()">HELP</span></th>
+				</tr>
+			</table>
+		</div>
+		<div class="game-over" id="game-over">GAME OVER
+			<table>
+			<tr align="left">
+				<th><span onclick="game.restart()">RESTART</span></th>
+			</tr>
+			<tr>
+				<th><span onclick="game.backToMenu()">BACK TO MENU</span></th>
+			</tr>
+			</table>
+		</div>
+		<div class="ships" id="ships">SELECT YOUR SHIP
+			<table>
+				<tr align="left">
+					<th><span onclick="game.setShip(1)">Millennium Falcon</span></th>
+					<th><img src="imgs/millennium_falcon.png" alt="Mil" height="40" width="40"></th>
+				</tr>
+				<tr>
+					<td><span onclick="game.setShip(2)">X Wing Fighter</span></td>
+					<td><img src="imgs/x_wing.png" alt="Wing" height="40" width="40"></td>
+				</tr>
+				<tr>
+					<td><span onclick="game.setShip(3)">Marauder Corvette</span></td>
+					<td><img src="imgs/corvete.png" alt="Mar" height="40" width="40"></td>
+				</tr>
+				<tr>
+					<td><span onclick="game.setShip(4)">X34 Land Speedster</span></td>
+					<td><img src="imgs/land_speedster.png" alt="Land" height="40" width="40"></td>
+				</tr>
+			</table>
+		</div>
+		<div class="instructions" id="instructions"> HELP <span onclick="game.backToMenu()">BACK</span>
+			<table>
+				<tr>
+					<td>Move left</td>
+					<td><img src="imgs/arrow_left.png" alt="Left" height="40" width="40"></td>
+				</tr>
+				<tr>
+					<td>Move right</td>
+					<td><img src="imgs/arrow_right.png" alt="Right" height="40" width="40"></td>
+				</tr>
+				<tr>
+					<td>Move up</td>
+					<td><img src="imgs/arrow_up.png" alt="Up" height="40" width="40"></td>
+				</tr>
+				<tr>
+					<td>Move down</td>
+					<td><img src="imgs/arrow_down.png" alt="Down" height="40" width="40"></td>
+				</tr>
+				<tr>
+					<td>Shot</td>
+					<td><img src="imgs/space.png" alt="Space" height="40" width="40"></td>
+				</tr>
+			</table>
+		</div>
+		<script src="sw_galaxian.js"></script>
+	</body>
+</html>
